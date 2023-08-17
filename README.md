@@ -3,5 +3,5 @@ Web Automation <br>
 
 <b> Situs uji : </b> https://saucedemo.com/ <br>
 
-<b>Note :</b> <u>Branch</u>
+<b>Note :</b> <u>Branch Information</u>
 <li><b>master : </b>inisialisasi project</li>
