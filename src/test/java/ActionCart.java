@@ -117,7 +117,6 @@ public class ActionCart extends env_target {
 
     @Test
     public void checkout(){
-        //add and remove items and leave only one item in the cart
         //Set driver location path
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\drivers\\chromedriver.exe");
         //Maximize driver
@@ -185,7 +184,6 @@ public class ActionCart extends env_target {
 
     @Test
     public void cancel_checkout(){
-        //add and remove items and leave only one item in the cart
         //Set driver location path
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\drivers\\chromedriver.exe");
         //Maximize driver
