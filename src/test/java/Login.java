@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Login extends env_target {
-    @Test
+    @Test //successful login
     public void main(){
         //Set driver location path
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\drivers\\chromedriver.exe");
@@ -31,6 +31,35 @@ public class Login extends env_target {
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='title'][contains(text(), 'Products')]"))
+        );
+        //Quit chrome
+        driver.quit();
+    }
+
+    @Test //login failed
+    public void invalid_account(){
+        //Set driver location path
+        System.setProperty("webdriver.chrome.driver","src\\main\\resources\\drivers\\chromedriver.exe");
+        //Maximize driver
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        //Set url
+        driver.get(baseUrl);
+        //Set waktu tunggu
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
+        );
+        //Set element locate
+        driver.findElement(By.name("user-name")).sendKeys("what is sauce");
+        driver.findElement(By.id("password")).sendKeys("I'm_from_a_long_time_ago");
+        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']" +
+                        "[contains(text(), 'Epic sadface: Username and password do not match any user in this service')]"))
         );
         //Quit chrome
         driver.quit();
