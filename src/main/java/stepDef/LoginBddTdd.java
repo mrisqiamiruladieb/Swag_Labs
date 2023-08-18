@@ -77,4 +77,34 @@ public class LoginBddTdd extends env_target {
         //Quit chrome
         driver.quit();
     }
+
+    //Aturan code TDD
+    @When("^User input (.*) and (.*)$")
+    public void userInputUsernameAndPassword(String username, String password) {
+        //Set element locate
+        driver.findElement(By.name("user-name")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+    }
+
+    //Aturan code TDD
+    @Then("^User get verify login (.*)$")
+    public void userGetVerifyLoginResult(String result) {
+        //Set waktu tunggu
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        if (result == "Passed"){
+            //Set case stop tunggu
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='title'][contains(text(), 'Products')]"))
+            );
+        } else if (result == "Failed") {
+            //Set case stop tunggu
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']" +
+                            "[contains(text(), 'Epic sadface: Username and password do not match any user in this service')]"))
+            );
+        }
+        //Quit chrome
+        driver.quit();
+    }
 }
