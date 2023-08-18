@@ -242,4 +242,56 @@ public class ActionCart extends env_target {
         //Quit chrome
         driver.quit();
     }
+
+    @Test
+    public void detail_product(){
+        //Set driver location path
+        System.setProperty("webdriver.chrome.driver","src\\main\\resources\\drivers\\chromedriver.exe");
+        //Maximize driver
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        //Set url
+        driver.get(baseUrl);
+        //Set waktu tunggu
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
+        );
+        //Set element locate
+        driver.findElement(By.name("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.name("add-to-cart-sauce-labs-backpack"))
+        );
+        //Set element locate
+        driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '1')]"))
+        );
+        //Set element locate
+        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("item_4_title_link"))
+        );
+        //Set element locate
+        driver.findElement(By.id("item_4_title_link")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.name("back-to-products"))
+        );
+        //Set element locate
+        driver.findElement(By.name("back-to-products")).click();
+        //Set case stop tunggu
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='title'][contains(text(), 'Products')]"))
+        );
+        //Quit chrome
+        driver.quit();
+    }
 }
