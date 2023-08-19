@@ -313,4 +313,32 @@ public class ActionCartBddTdd extends env_target {
                 ExpectedConditions.visibilityOfElementLocated(By.name("back-to-products"))
         );
     }
+
+    @When("^User input (.*), (.*), (.*) on personal data checkout page$")
+    public void userInputFirstnameLastnameZipOnPersonalDataCheckoutPage(String firstname, String lastname, String zip) {
+        //Set element locate
+        driver.findElement(By.name("firstName")).sendKeys(firstname);
+        driver.findElement(By.id("last-name")).sendKeys(lastname);
+        driver.findElement(By.name("postalCode")).sendKeys(zip);
+    }
+
+    @Then("^User get verify checkout overview page (.*)$")
+    public void userGetVerifyCheckoutOverviewPageResult(String result) {
+        //Set waktu tunggu
+        Duration duration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, duration);
+        if (result == "Passed"){
+            //Set case stop tunggu
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='title'][contains(text(), 'Checkout: Overview')]"))
+            );
+        } else if (result == "Failed") {
+            //Set case stop tunggu
+            wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='error-message-container error']"))
+            );
+        }
+        //Quit chrome
+        driver.quit();
+    }
 }
