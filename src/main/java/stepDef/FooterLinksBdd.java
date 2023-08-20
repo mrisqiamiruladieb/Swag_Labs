@@ -1,6 +1,8 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
+import pages.homePages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,10 +31,11 @@ public class FooterLinksBdd extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
         );
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
+        loginpages.clickLoginButton();
     }
 
     @When("User verify twitter link button")
@@ -48,8 +51,10 @@ public class FooterLinksBdd extends env_target {
 
     @And("User click twitter link button")
     public void userClickTwitterLinkButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@target='_blank'][contains(text(), 'Twitter')]")).click();
+        //Implementasi POM
+        homePages footer = new homePages(driver);
+
+        footer.clickTwitterLinkButton();
     }
 
     @Then("User verify twitter link result")
@@ -78,8 +83,10 @@ public class FooterLinksBdd extends env_target {
 
     @And("User click facebook link button")
     public void userClickFacebookLinkButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@target='_blank'][contains(text(), 'Facebook')]")).click();
+        //Implementasi POM
+        homePages footer = new homePages(driver);
+
+        footer.clickFacebookLinkButton();
     }
 
     @Then("User verify facebook link result")
@@ -108,8 +115,10 @@ public class FooterLinksBdd extends env_target {
 
     @And("User click linkedin link button")
     public void userClickLinkedinLinkButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@target='_blank'][contains(text(), 'LinkedIn')]")).click();
+        //Implementasi POM
+        homePages footer = new homePages(driver);
+
+        footer.clickLinkedInLinkButton();
     }
 
     @Then("User verify linkedin link result")
