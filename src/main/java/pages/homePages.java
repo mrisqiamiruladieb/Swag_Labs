@@ -25,6 +25,11 @@ public class homePages {
 
     By DescendingPriceProductSortOption = By.xpath("//option[@value='hilo'][contains(text(), 'Price (high to low)')]");
 
+    By OpenMenuButton = By.xpath("//button[@id='react-burger-menu-btn'][contains(text(), 'Open Menu')]");
+
+    //Di sidebar
+    By LogoutButton = By.xpath("//a[@id='logout_sidebar_link'][contains(text(), 'Logout')]");
+
     //Method
     public void clickTwitterLinkButton(){
         driver.findElement(TwitterLinkButton).click();
@@ -47,4 +52,8 @@ public class homePages {
     public void clickAscendingPriceProductSortOption(){ driver.findElement(AscendingPriceProductSortOption).click(); }
 
     public void clickDescendingPriceProductSortOption(){ driver.findElement(DescendingPriceProductSortOption).click(); }
+
+    public void clickOpenMenuButton(){ driver.findElement(OpenMenuButton).click(); }
+
+    public void clickLogoutButton(){ driver.findElement(LogoutButton).click(); }
 }

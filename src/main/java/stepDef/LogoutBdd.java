@@ -1,6 +1,8 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
+import pages.homePages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,10 +31,11 @@ public class LogoutBdd extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
         );
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
+        loginpages.clickLoginButton();
     }
 
     @When("User verify open menu button")
@@ -49,8 +52,10 @@ public class LogoutBdd extends env_target {
 
     @Then("User click open menu button")
     public void userClickOpenMenuButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//button[@id='react-burger-menu-btn'][contains(text(), 'Open Menu')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickOpenMenuButton();
     }
 
     @When("User verify logout button")
@@ -66,8 +71,10 @@ public class LogoutBdd extends env_target {
 
     @And("User click logout button")
     public void userClickLogoutButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@id='logout_sidebar_link'][contains(text(), 'Logout')]")).click();
+        //Implementasi POM
+        homePages sidebar = new homePages(driver);
+
+        sidebar.clickLogoutButton();
     }
 
     @Then("User verify logout result")
