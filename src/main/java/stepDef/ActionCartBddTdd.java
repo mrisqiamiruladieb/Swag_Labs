@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class ActionCartBddTdd extends env_target {
     @Given("User successfully logged in")
@@ -208,10 +209,14 @@ public class ActionCartBddTdd extends env_target {
 
     @When("User fill data on personal data checkout page")
     public void userFillDataOnPersonalDataCheckoutPage() {
+        //Generate Random Data
+        Random rand = new Random();
+        //Menggunakan angka
+        int dataRand = rand.nextInt(10000);
         //Set element locate
-        driver.findElement(By.name("firstName")).sendKeys("Red");
-        driver.findElement(By.id("last-name")).sendKeys("Bulls");
-        driver.findElement(By.name("postalCode")).sendKeys("12321");
+        driver.findElement(By.name("firstName")).sendKeys("Red" + dataRand);
+        driver.findElement(By.id("last-name")).sendKeys("Bulls" + dataRand);
+        driver.findElement(By.name("postalCode")).sendKeys("" + dataRand);
     }
 
     @And("User click continue button")
