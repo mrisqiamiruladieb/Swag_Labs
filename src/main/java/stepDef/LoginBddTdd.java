@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class LoginBddTdd extends env_target {
     @Given("User is on login page")
@@ -59,9 +60,13 @@ public class LoginBddTdd extends env_target {
 
     @When("User fill invalid username and password")
     public void userFillInvalidUsernameAndPassword() {
+        //Generate Random Data
+        Random rand = new Random();
+        //Menggunakan angka
+        int userRand = rand.nextInt(1000);
         //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("what is sauce");
-        driver.findElement(By.id("password")).sendKeys("I'm_from_a_long_time_ago");
+        driver.findElement(By.name("user-name")).sendKeys("what is sauce" + userRand);
+        driver.findElement(By.id("password")).sendKeys("I'm_from_a_long_time_ago" + userRand);
     }
 
     @Then("User get error message")
