@@ -1,6 +1,8 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
+import pages.homePages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,10 +31,11 @@ public class ActionOpenMenuBdd extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
         );
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
+        loginpages.clickLoginButton();
     }
 
     @When("User verify product to add to cart")
@@ -48,8 +51,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @Then("User click add product to cart button")
     public void userClickAddProductToCartButton() {
-        //Set element locate
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        //Implementasi POM
+        homePages homepages = new homePages(driver);
+
+        homepages.clickAddToCartSauceLabsBikeLightButton();
     }
 
     @When("User verify cart contents")
@@ -65,8 +70,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @Then("User click cart button")
     public void userClickCartButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickCartButton();
     }
 
     @When("User verify open menu link button")
@@ -83,8 +90,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @Then("User click open menu link button")
     public void userClickOpenMenuLinkButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//button[@id='react-burger-menu-btn'][contains(text(), 'Open Menu')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickOpenMenuButton();
     }
 
     @When("User verify all items button")
@@ -100,8 +109,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @And("User click all items button")
     public void userClickAllItemsButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@id='inventory_sidebar_link'][contains(text(), 'All Items')]")).click();
+        //Implementasi POM
+        homePages sidebar = new homePages(driver);
+
+        sidebar.clickAllItemsButton();
     }
 
     @Then("User verify all items button result")
@@ -130,8 +141,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @And("User click about button")
     public void userClickAboutButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@id='about_sidebar_link'][contains(text(), 'About')]")).click();
+        //Implementasi POM
+        homePages sidebar = new homePages(driver);
+
+        sidebar.clickAboutButton();
     }
 
     @Then("User verify about button result")
@@ -160,8 +173,10 @@ public class ActionOpenMenuBdd extends env_target {
 
     @And("User click reset app state button")
     public void userClickResetAppStateButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@id='reset_sidebar_link'][contains(text(), 'Reset App State')]")).click();
+        //Implementasi POM
+        homePages sidebar = new homePages(driver);
+
+        sidebar.clickResetAppStateButton();
     }
 
     @Then("User verify reset app state result")
