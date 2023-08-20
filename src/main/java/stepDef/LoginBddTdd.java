@@ -1,6 +1,7 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -34,15 +35,18 @@ public class LoginBddTdd extends env_target {
 
     @When("User fill username and password")
     public void userFillUsernameAndPassword() {
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
     }
 
     @And("User click login button")
     public void userClickLoginButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.clickLoginButton();
     }
 
     @Then("User verify login result")
@@ -64,9 +68,10 @@ public class LoginBddTdd extends env_target {
         Random rand = new Random();
         //Menggunakan angka
         int userRand = rand.nextInt(1000);
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("what is sauce" + userRand);
-        driver.findElement(By.id("password")).sendKeys("I'm_from_a_long_time_ago" + userRand);
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("what is sauce" + userRand, "I'm_from_a_long_time_ago" + userRand);
     }
 
     @Then("User get error message")
@@ -86,9 +91,10 @@ public class LoginBddTdd extends env_target {
     //Aturan code TDD
     @When("^User input (.*) and (.*)$")
     public void userInputUsernameAndPassword(String username, String password) {
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData(username, password);
     }
 
     //Aturan code TDD
