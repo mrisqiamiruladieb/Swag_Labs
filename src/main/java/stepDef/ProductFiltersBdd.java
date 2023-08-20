@@ -1,6 +1,8 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
+import pages.homePages;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -28,10 +30,11 @@ public class ProductFiltersBdd extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
         );
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
+        loginpages.clickLoginButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@class='product_sort_container'][@data-test='product_sort_container']"))
@@ -40,8 +43,10 @@ public class ProductFiltersBdd extends env_target {
 
     @When("User click product sort button")
     public void userClickProductSortButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//select[@class='product_sort_container'][@data-test='product_sort_container']")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickProductSortButton();
     }
 
     @Then("User verify ascending name product sort option")
@@ -57,8 +62,10 @@ public class ProductFiltersBdd extends env_target {
 
     @When("User click ascending name product sort option")
     public void userClickAscendingNameProductSortOption() {
-        //Set element locate
-        driver.findElement(By.xpath("//option[@value='az'][contains(text(), 'Name (A to Z)')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickAscendingNameProductSortOption();
     }
 
     @Then("User verify ascending name product sort result")
@@ -87,8 +94,10 @@ public class ProductFiltersBdd extends env_target {
 
     @When("User click descending name product sort option")
     public void userClickDescendingNameProductSortOption() {
-        //Set element locate
-        driver.findElement(By.xpath("//option[@value='za'][contains(text(), 'Name (Z to A)')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickDescendingNameProductSortOption();
     }
 
     @Then("User verify descending name product sort result")
@@ -117,8 +126,10 @@ public class ProductFiltersBdd extends env_target {
 
     @When("User click ascending price product sort option")
     public void userClickAscendingPriceProductSortOption() {
-        //Set element locate
-        driver.findElement(By.xpath("//option[@value='lohi'][contains(text(), 'Price (low to high)')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickAscendingPriceProductSortOption();
     }
 
     @Then("User verify ascending price product sort result")
@@ -147,8 +158,10 @@ public class ProductFiltersBdd extends env_target {
 
     @When("User click descending price product sort option")
     public void userClickDescendingPriceProductSortOption() {
-        //Set element locate
-        driver.findElement(By.xpath("//option[@value='hilo'][contains(text(), 'Price (high to low)')]")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickDescendingPriceProductSortOption();
     }
 
     @Then("User verify descending price product sort result")
