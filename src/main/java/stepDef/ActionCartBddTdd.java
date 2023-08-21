@@ -1,6 +1,9 @@
 package stepDef;
 
 import config.env_target;
+import pages.loginPages;
+import pages.homePages;
+import pages.cartPages;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,10 +34,11 @@ public class ActionCartBddTdd extends env_target {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='submit'][@value='Login']"))
         );
-        //Set element locate
-        driver.findElement(By.name("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.xpath("//input[@type='submit'][@value='Login']")).click();
+        //Implementasi POM
+        loginPages loginpages = new loginPages(driver);
+
+        loginpages.inputUserAccountData("standard_user", "secret_sauce");
+        loginpages.clickLoginButton();
     }
 
     @When("User verify products to add to cart")
@@ -53,38 +57,40 @@ public class ActionCartBddTdd extends env_target {
         //Set waktu tunggu
         Duration duration = Duration.ofSeconds(10);
         WebDriverWait wait = new WebDriverWait(driver, duration);
-        //Set element locate
-        driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
+        //Implementasi POM
+        homePages homepages = new homePages(driver);
+
+        homepages.clickAddToCartSauceLabsBackpackButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '1')]"))
         );
-        //Set element locate
-        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        //Implementasi POM
+        homepages.clickAddToCartSauceLabsBikeLightButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '2')]"))
         );
-        //Set element locate
-        driver.findElement(By.name("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        //Implementasi POM
+        homepages.clickAddToCartSauceLabsBoltTShirtButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '3')]"))
         );
-        //Set element locate
-        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+        //Implementasi POM
+        homepages.clickAddToCartSauceLabsFleeceJacketButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '4')]"))
         );
-        //Set element locate
-        driver.findElement(By.name("add-to-cart-sauce-labs-onesie")).click();
+        //Implementasi POM
+        homepages.clickAddToCartSauceLabsOnesieButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '5')]"))
         );
-        //Set element locate
-        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        //Implementasi POM
+        homepages.clickAddToCartSauceLabsAllThingsTShirtRedButton();
     }
 
     @Then("User verifies the number of products added")
@@ -100,8 +106,10 @@ public class ActionCartBddTdd extends env_target {
 
     @When("User click the cart button")
     public void userClickTheCartButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
+        //Implementasi POM
+        homePages header = new homePages(driver);
+
+        header.clickCartButton();
     }
 
     @And("User verify products to remove from cart")
@@ -120,32 +128,34 @@ public class ActionCartBddTdd extends env_target {
         //Set waktu tunggu
         Duration duration = Duration.ofSeconds(10);
         WebDriverWait wait = new WebDriverWait(driver, duration);
-        //Set element locate
-        driver.findElement(By.name("remove-sauce-labs-backpack")).click();
+        //Implementasi POM
+        cartPages cartpages = new cartPages(driver);
+
+        cartpages.clickRemoveSauceLabsBackpackButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '5')]"))
         );
-        //Set element locate
-        driver.findElement(By.id("remove-sauce-labs-bike-light")).click();
+        //Implementasi POM
+        cartpages.clickRemoveSauceLabsBikeLightButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '4')]"))
         );
-        //Set element locate
-        driver.findElement(By.name("remove-sauce-labs-bolt-t-shirt")).click();
+        //Implementasi POM
+        cartpages.clickRemoveSauceLabsBoltTShirtButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '3')]"))
         );
-        //Set element locate
-        driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
+        //Implementasi POM
+        cartpages.clickRemoveSauceLabsFleeceJacketButton();
         //Set case stop tunggu
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='shopping_cart_badge'][contains(text(), '2')]"))
         );
-        //Set element locate
-        driver.findElement(By.name("remove-sauce-labs-onesie")).click();
+        //Implementasi POM
+        cartpages.clickRemoveSauceLabsOnesieButton();
     }
 
     @And("User verifies the number of products removed")
@@ -162,8 +172,10 @@ public class ActionCartBddTdd extends env_target {
 
     @And("User click continue shopping button")
     public void userClickContinueShoppingButton() {
-        //Set element locate
-        driver.findElement(By.name("continue-shopping")).click();
+        //Implementasi POM
+        cartPages cartpages = new cartPages(driver);
+
+        cartpages.clickContinueShoppingButton();
     }
 
     @Then("User verify remove products result")
@@ -192,8 +204,10 @@ public class ActionCartBddTdd extends env_target {
 
     @And("User click checkout button")
     public void userClickCheckoutButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//button[@class='btn btn_action btn_medium checkout_button'][contains(text(), 'Checkout')]")).click();
+        //Implementasi POM
+        cartPages cartpages = new cartPages(driver);
+
+        cartpages.clickCheckoutButton();
     }
 
     @Then("User verify personal data checkout page")
@@ -213,16 +227,18 @@ public class ActionCartBddTdd extends env_target {
         Random rand = new Random();
         //Menggunakan angka
         int dataRand = rand.nextInt(10000);
-        //Set element locate
-        driver.findElement(By.name("firstName")).sendKeys("Red" + dataRand);
-        driver.findElement(By.id("last-name")).sendKeys("Bulls" + dataRand);
-        driver.findElement(By.name("postalCode")).sendKeys("" + dataRand);
+        //Implementasi POM
+        cartPages checkout = new cartPages(driver);
+
+        checkout.inputUserInformationData("Red" + dataRand, "Bulls" + dataRand, "" + dataRand);
     }
 
     @And("User click continue button")
     public void userClickContinueButton() {
-        //Set element locate
-        driver.findElement(By.id("continue")).click();
+        //Implementasi POM
+        cartPages checkout = new cartPages(driver);
+
+        checkout.clickContinueButton();
     }
 
     @Then("User verify checkout overview page")
@@ -238,8 +254,10 @@ public class ActionCartBddTdd extends env_target {
 
     @When("User click finish button")
     public void userClickFinishButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//button[@data-test='finish'][@name='finish']")).click();
+        //Implementasi POM
+        cartPages checkout = new cartPages(driver);
+
+        checkout.clickFinishButton();
     }
 
     @Then("User verify checkout result")
@@ -255,8 +273,10 @@ public class ActionCartBddTdd extends env_target {
 
     @When("User click back to products button")
     public void userClickBackToProductsButton() {
-        //Set element locate
-        driver.findElement(By.name("back-to-products")).click();
+        //Implementasi POM
+        cartPages cartpages = new cartPages(driver);
+
+        cartpages.clickBackToProductsButton();
     }
 
     @Then("User verify products page")
@@ -274,8 +294,10 @@ public class ActionCartBddTdd extends env_target {
 
     @When("User click cancel button")
     public void userClickCancelButton() {
-        //Set element locate
-        driver.findElement(By.xpath("//button[@data-test='cancel'][@name='cancel']")).click();
+        //Implementasi POM
+        cartPages checkout = new cartPages(driver);
+
+        checkout.clickCancelButton();
     }
 
     @Then("User get data error message")
@@ -304,8 +326,10 @@ public class ActionCartBddTdd extends env_target {
 
     @And("User click detail product link")
     public void userClickDetailProductLink() {
-        //Set element locate
-        driver.findElement(By.id("item_4_title_link")).click();
+        //Implementasi POM
+        cartPages cartpages = new cartPages(driver);
+
+        cartpages.clickDetailProductLinkButton();
     }
 
     @Then("User verify back to products button")
@@ -321,10 +345,10 @@ public class ActionCartBddTdd extends env_target {
 
     @When("^User input (.*), (.*), (.*) on personal data checkout page$")
     public void userInputFirstnameLastnameZipOnPersonalDataCheckoutPage(String firstname, String lastname, String zip) {
-        //Set element locate
-        driver.findElement(By.name("firstName")).sendKeys(firstname);
-        driver.findElement(By.id("last-name")).sendKeys(lastname);
-        driver.findElement(By.name("postalCode")).sendKeys(zip);
+        //Implementasi POM
+        cartPages checkout = new cartPages(driver);
+
+        checkout.inputUserInformationData(firstname, lastname, zip);
     }
 
     @Then("^User get verify checkout overview page (.*)$")

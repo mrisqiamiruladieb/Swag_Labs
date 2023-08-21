@@ -31,7 +31,12 @@ public class homePages {
     By ResetAppStateButton = By.xpath("//a[@id='reset_sidebar_link'][contains(text(), 'Reset App State')]");
 
     //Di home
+    By AddToCartSauceLabsBackpackButton = By.name("add-to-cart-sauce-labs-backpack");
     By AddToCartSauceLabsBikeLightButton = By.id("add-to-cart-sauce-labs-bike-light");
+    By AddToCartSauceLabsBoltTShirtButton = By.name("add-to-cart-sauce-labs-bolt-t-shirt");
+    By AddToCartSauceLabsFleeceJacketButton = By.id("add-to-cart-sauce-labs-fleece-jacket");
+    By AddToCartSauceLabsOnesieButton = By.name("add-to-cart-sauce-labs-onesie");
+    By AddToCartSauceLabsAllThingsTShirtRedButton = By.id("add-to-cart-test.allthethings()-t-shirt-(red)");
 
     //Method
     public void clickTwitterLinkButton(){
@@ -71,4 +76,16 @@ public class homePages {
     public void clickAboutButton(){ driver.findElement(AboutButton).click(); }
 
     public void clickResetAppStateButton(){ driver.findElement(ResetAppStateButton).click(); }
+
+    public void clickAddToCartSauceLabsBackpackButton(){ driver.findElement(AddToCartSauceLabsBackpackButton).click(); }
+
+    public void clickAddToCartSauceLabsBoltTShirtButton(){ driver.findElement(AddToCartSauceLabsBoltTShirtButton).click(); }
+
+    public void clickAddToCartSauceLabsFleeceJacketButton(){ driver.findElement(AddToCartSauceLabsFleeceJacketButton).click(); }
+
+    public void clickAddToCartSauceLabsOnesieButton(){ driver.findElement(AddToCartSauceLabsOnesieButton).click(); }
+
+    public void clickAddToCartSauceLabsAllThingsTShirtRedButton(){
+        driver.findElement(AddToCartSauceLabsAllThingsTShirtRedButton).click();
+    }
 }
